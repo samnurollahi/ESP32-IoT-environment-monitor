@@ -42,7 +42,7 @@ void setup()
   Serial.begin(9600);
 
   WiFi.begin(ssid, password);
-  if (WiFi.status() != WL_CONNECTED)
+  while (WiFi.status() != WL_CONNECTED)
   {
     delay(250);
   };
@@ -79,7 +79,9 @@ void setup()
 
     server.send(200, "text/html", html); });
   server.begin();
-  Serial.println("HTTP server started");
+  Serial.print("HTTP server started");
+  Serial.print("IP address: ");
+  Serial.println(WiFi.localIP());
 
   sensors.begin();
 
